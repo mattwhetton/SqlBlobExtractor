@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "BlobFileExtractor.Installer", "BlobFileExtractor.Installer\BlobFileExtractor.Installer.wixproj", "{FEA6F1D2-D050-4A68-9CDA-161DFD08A011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -20,6 +22,10 @@ Global
 		{26320266-28C4-43DB-9803-76DA68359199}.Debug|x86.Build.0 = Debug|x86
 		{26320266-28C4-43DB-9803-76DA68359199}.Release|x86.ActiveCfg = Release|x86
 		{26320266-28C4-43DB-9803-76DA68359199}.Release|x86.Build.0 = Release|x86
+		{FEA6F1D2-D050-4A68-9CDA-161DFD08A011}.Debug|x86.ActiveCfg = Debug|x86
+		{FEA6F1D2-D050-4A68-9CDA-161DFD08A011}.Debug|x86.Build.0 = Debug|x86
+		{FEA6F1D2-D050-4A68-9CDA-161DFD08A011}.Release|x86.ActiveCfg = Release|x86
+		{FEA6F1D2-D050-4A68-9CDA-161DFD08A011}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
