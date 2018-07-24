@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="BlobFileExtractor.OutputLocationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="360">
+    <StackPanel Margin="20,20,20,20">
+
+        <Border Margin="0,0,0,0" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Your query has return "></TextBlock>
+                <TextBlock Text="{Binding DataItemCount}"></TextBlock>
+                <TextBlock Text=" item(s)."></TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Margin="0,5,0,0" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="Select Data Column Name"></TextBlock>
+                <ComboBox x:Name="DataColumnNamesCmb" ItemsSource="{Binding DataColumns}" SelectedItem="{Binding SelectedDataColumn}" ></ComboBox>
+            </StackPanel>
+        </Border>
+        <Border Margin="0,5,0,0" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="Enter folder:"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="FolderTb" Width="300" Text="{Binding Folder}"></TextBox>
+                    <Button x:Name="ChooseFilename" Width="20" Click="ChooseFilename_Click">
+                        <TextBlock Text="..."></TextBlock>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Margin="0,15,0,0" VerticalAlignment="Top">
+            <StackPanel>
+                <RadioButton Name="FilenameTextRb" Content="Enter file name:" GroupName="OutputType" IsChecked="{Binding IsTextFilename}"></RadioButton>
+                <TextBox Name="FileNameTb" Text="{Binding FileName}" IsEnabled="{Binding ElementName=FilenameTextRb, Path=IsChecked}"  Margin="18,5,0,10"></TextBox>
+                
+                <RadioButton Name="FilenameColumnRb" Content="Choose column as filename:" GroupName="OutputType"></RadioButton>
+                <ComboBox x:Name="FilenameColumnCmb" IsEnabled="{Binding ElementName=FilenameColumnRb, Path=IsChecked}" ItemsSource="{Binding DataColumns}" 
+                          SelectedItem="{Binding SelectedFilenameColumn}" Margin="18,5,0,30"></ComboBox>
+
+                <RadioButton Name="FiletypeTextCb" Content="Enter file extension:" GroupName="MimeType"  IsChecked="{Binding IsTextFileExtension}"></RadioButton>
+                <TextBlock Text="Filename Extension (e.g. pdf, jpg, png, tiff)" Margin="18,5,0,0"></TextBlock>
+                <TextBox Name="FilenameColumnExtensionTb" Text="{Binding FileNameExtension}" IsEnabled="{Binding ElementName=FiletypeTextCb, Path=IsChecked}" Margin="18,5,0,10"></TextBox>
+
+                <RadioButton Name="FiletypeColumnCb" Content="Choose column as mime type:" GroupName="MimeType"></RadioButton>
+                <ComboBox x:Name="FiletypeColumnCmb" IsEnabled="{Binding ElementName=FiletypeColumnCb, Path=IsChecked}" ItemsSource="{Binding DataColumns}"
+                          SelectedItem="{Binding SelectedFiletypeColumn}" Margin="18,5,0,0"></ComboBox>
+
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</UserControl>

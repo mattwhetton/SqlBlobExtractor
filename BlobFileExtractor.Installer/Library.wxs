@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  
+    <Product Id="*" Name="SQL Blob File Extractor" Language="1033" Version="1.0.5.0" Manufacturer="ItsMonkie Solutions" UpgradeCode="992D01CA-AFDA-480D-B682-03CFCFC6E1EA">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Comments="SQL Blob File Extractor - 1.0.5.0" Description="SQL Blob File Extractor - 1.0.5.0" />
+
+        <MajorUpgrade AllowDowngrades="yes" AllowSameVersionUpgrades="no" />
+      
+        <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+      
+        <PropertyRef Id="NETFRAMEWORK40FULL"/>
+        <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
+            <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+        </Condition>
+          
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="CompanyNameFolder" Name="ItsMonkie Solutions">
+                    <Directory Id="INSTALLLOCATION" Name="SQL Blob File Extractor">
+                        <Component Id="BlobFileExtractor" Guid="97785C4B-E93E-4346-8AE9-96E801061EFD">
+                            <File Source="$(var.BlobFileExtractor.TargetPath)" />
+                            <File Source="$(var.BlobFileExtractor.TargetPath).config" />
+                            <File Id="MICROSOFT.DATA.CONNECTIONUI.DIALOG.DLL" Name="Microsoft.Data.ConnectionUI.Dialog.dll" Source="..\BlobFileExtractor\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll" />
+                            <File Id="MICROSOFT.DATA.CONNECTIONUI.DLL" Name="Microsoft.Data.ConnectionUI.dll" Source="..\BlobFileExtractor\bin\Debug\Microsoft.Data.ConnectionUI.dll" />
+                            <File Id="MICROSOFT.DATA.CONNECTIONUI.SQLCEDATAPROVIDER.DLL" Name="Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll" Source="..\BlobFileExtractor\bin\Debug\Microsoft.Data.ConnectionUI.SqlCeDataProvider.dll" />
+                            <File Id="MICROSOFT.SQLSERVERCE.CLIENT.DLL" Name="Microsoft.SqlServerCe.Client.dll" Source="..\BlobFileExtractor\bin\Debug\Microsoft.SqlServerCe.Client.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <!-- These directories used for Shortcuts -->
+            <Directory Id="ProgramMenuFolder">
+              <Directory Id="ApplicationProgramsFolder" Name="SQL Blob File Extractor">
+                <Component Id="ApplicationShortcut" Guid="CD512F11-F154-4231-870C-804C9B462AC0">
+                  <Shortcut Id="BlobFileExtractorStartMenuShortcut" Name="SQL Blob File Extractor"
+						                Description="SQL Blob File Extractor"
+						                Target="[INSTALLLOCATION]BlobFileExtractor.exe" WorkingDirectory="INSTALLLOCATION"></Shortcut>
+                  <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"></RemoveFolder>
+                  <RegistryKey Root="HKCU" Key="Software\Microsoft\SQL Blob File Extractor">
+                    <RegistryValue Name="installed" Type="integer" Value="1" KeyPath="yes" />
+                  </RegistryKey>
+                </Component>
+              </Directory>
+            </Directory>
+        </Directory>
+        <Feature Id="ProductFeature" Title="BlobFileExtractor" Level="1">
+            <ComponentRef Id="BlobFileExtractor" />
+            <ComponentRef Id="ApplicationShortcut" />
+        </Feature>
+        <UI />
+    </Product>
+</Wix>
